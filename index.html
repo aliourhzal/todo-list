@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+  <title>Frontend Mentor | Todo app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+	.attribution { font-size: 11px; text-align: center; }
+	.attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+	<img src="images/bg-desktop-dark.jpg" alt="" id="bgdesktop">
+	<div class="container">
+		<div class="app">
+			<p>todo</p>
+			<img src="images/icon-sun.svg" alt="" id="sun">
+		</div>
+		<div id="new">
+			<div id="add"></div>
+			<input type="text" placeholder="Create a new todo..." id="add_content">
+		</div>
+		<div id="main">
+			<div id="todos">
+				<div class="todo">
+					<input type="checkbox" class="check">
+					<p class="todo_content">hello world</p>
+					<img src="images/icon-cross.svg" alt="" class="delete">
+				</div>
+				<div class="todo">
+					<input type="checkbox" class="check">
+					<p class="todo_content">Salaaaaam 3alaykom</p>
+					<img src="images/icon-cross.svg" alt="" class="delete">
+				</div>
+				<div class="todo">
+					<input type="checkbox" class="check">
+					<p class="todo_content">Chof chwiya ldik jih1</p>
+					<img src="images/icon-cross.svg" alt="" class="delete">
+				</div>
+				<div class="todo">
+					<input type="checkbox" class="check">
+					<p class="todo_content">Chof chwiya ldik jih2</p>
+					<img src="images/icon-cross.svg" alt="" class="delete">
+				</div>
+				<div class="todo">
+					<input type="checkbox" class="check">
+					<p class="todo_content">Chof chwiya ldik jih3</p>
+					<img src="images/icon-cross.svg" alt="" class="delete">
+				</div>
+			</div>
+			<div id="filter">
+				<span id="items">5 items left</span>
+				<div class="filter_prop">
+					<span id="all">all</span>
+					<span id="active">active</span>
+					<span id="completed">completed</span>
+				</div>
+				<span id="clear">Clear Completed</span>
+			</div>
+		</div>
+	</div>
+	<script src="app.js"></script>
+  <!--Todo
+
+  Add dynamic number  items left
+
+  All
+  Active
+  Completed
+
+  Clear Completed
+
+  Drag and drop to reorder list
+
+  <div class="attribution">
+	Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+	Coded by <a href="#">Your Name Here</a>.
+  </div>-->
+</body>
+</html>

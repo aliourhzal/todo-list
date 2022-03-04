@@ -1,0 +1,210 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	background-color: hsl(235, 21%, 11%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#bgdesktop {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 40%;
+	gap: 25px;
+}
+
+.container .app {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 90px;
+	margin-bottom: 25px;
+}
+
+.container .app p {
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: 15px;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 56px;
+}
+
+.container .app #sun {
+	cursor: pointer;
+}
+
+.container #new {
+	width: 100%;
+	height: 90px;
+	background-color: hsl(235, 24%, 19%);
+	border-radius: 7px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 30px;
+	padding: 0 30px;
+}
+
+.container #new #add {
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	border: 2px solid hsl(237, 14%, 26%);
+	cursor: pointer;
+}
+
+.container #new input[type="text"] {
+	outline: none;
+	background: none;
+	border: none;
+	font-family: Josefin Sans;
+	height: 100%;
+	width: auto;
+	font-size: 24px;
+	color: hsl(234, 39%, 85%);
+	width: 85%;
+	height: 100%;
+}
+
+#main {
+	width: 100%;
+	border-radius: 7px;
+	overflow: hidden
+}
+
+#main #todos {
+	width: 100%;
+	max-height: calc(90px * 5);
+	overflow-y: scroll;
+}
+
+#main #todos::-webkit-scrollbar {
+	width: 10px;
+}
+#main #todos::-webkit-scrollbar-thumb {
+	-webkit-appearance: none;
+	background-color: hsl(234, 11%, 52%);
+	border-radius: 20px;
+}
+
+#main #todos::-webkit-scrollbar-track {
+	background-color: var(--color_track, hsl(235, 24%, 19%));
+}
+
+#main #todos .todo {
+	width: 100%;
+	height: 90px;
+	background-color: hsl(235, 24%, 19%);
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 30px;
+	padding: 0 30px;
+	border-bottom: 2px solid hsl(237, 14%, 26%);
+	position: relative;
+}
+
+#main #todos .todo input[type="checkbox"]{
+	-webkit-appearance: none;
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	border: 2px solid hsl(237, 14%, 26%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#main #todos .todo input[type="checkbox"]::after{
+	content: "";
+	background-image: url("images/icon-check.svg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: none;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	top: 27%;
+	left: 20%;
+}
+
+#main #todos .todo input[type="checkbox"]:checked {
+	background: linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+#main #todos .todo input[type="checkbox"]:checked::after {
+	display: block;
+}
+
+#main #todos .todo .todo_content {
+	font-family: Josefin Sans;
+	font-size: 24px;
+	color: hsl(234, 39%, 85%);
+}
+
+#main #todos .todo img {
+	position: absolute;
+	right: 30px;
+	cursor: pointer;
+}
+
+#filter {
+	height: 55px;
+	width: 100%;
+	background-color: hsl(235, 24%, 19%);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 30px;
+}
+
+#filter #items, 
+#filter #clear {
+	color: hsl(234, 11%, 52%);
+	font-family: Josefin Sans;
+}
+
+#filter #items:hover {
+	cursor: default;
+}
+
+#filter .filter_prop span {
+	margin-right: 10px;
+	color: hsl(234, 11%, 52%);
+	font-family: Josefin Sans;
+	font-size: 18px;
+	font-weight: 600;
+	text-transform: capitalize;
+}
+
+#filter .filter_prop span:hover,
+#filter .filter_prop span:focus {
+	color: var(--hover, hsl(236, 33%, 92%));
+	cursor: pointer;
+}
+
+#filter #clear {
+	cursor: pointer;
+}
+
+.filter #clear:hover {
+	color: hsl(236, 33%, 92%);
+}
