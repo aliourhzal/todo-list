@@ -120,6 +120,7 @@ add_check.onclick = function () {
 		todo[todo.length - 1].style.borderColor = check_box[todo.length - 1].style.borderColor = "hsl(236, 33%, 92%)";
 		todo_content[todo.length - 1].style.color = "hsl(235, 19%, 35%)";
 	}
+	console.log(todo.length);
 }
 
 /* adding todo */
@@ -135,6 +136,7 @@ function theme_fun(theme)
 	var check_box = document.getElementsByClassName("check");
 	var todo_content = document.getElementsByClassName("todo_content");
 	var add_content = document.getElementById("add_content");
+	var filter_prop = document.getElementById("filter_prop");
 	var i = -1;
 
 	if (theme === "light")
@@ -147,6 +149,7 @@ function theme_fun(theme)
 		completed.style.setProperty("--hover", "hsl(235, 19%, 35%)");
 		active.style.setProperty("--hover", "hsl(235, 19%, 35%)");
 		add_content.style.color = "hsl(236, 9%, 61%)";
+		filter_prop.style.backgroundColor = "hsl(0, 0%, 98%)";
 		while (++i < todo.length)
 		{
 			todo[i].style.backgroundColor = "hsl(0, 0%, 98%)";
@@ -154,13 +157,12 @@ function theme_fun(theme)
 			todo_content[i].style.color = "hsl(235, 19%, 35%)";
 		}
 		i = -1;
-
 	}
 	else if (theme === "dark")
 	{
 		body[0].style.backgroundColor = "hsl(235, 21%, 11%)";
 		main_img.setAttribute("src", "images/bg-desktop-dark.jpg");
-		filter_div.style.backgroundColor = creat_new.style.backgroundColor = "hsl(235, 24%, 19%)";
+		filter_div.style.backgroundColor = creat_new.style.backgroundColor = filter_prop.style.backgroundColor = "hsl(235, 24%, 19%)";
 		todos.style.setProperty('--color_track', "hsl(235, 24%, 19%)");
 		while (++i < todo.length)
 		{
