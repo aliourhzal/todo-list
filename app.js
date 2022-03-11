@@ -7,9 +7,22 @@ var todos = document.getElementById("todos");
 var delt = document.getElementsByClassName("delete");
 var light_dark = 0;
 var x = -1;
+var local_id = 0;
+var def = 0;
 
-while (++x < todo.length)
-	delt[x].setAttribute("onclick", "delete_fun(" + x + ")");
+
+window.onload = function() {
+	while (++x < todo.length)
+		delt[x].setAttribute("onclick", "delete_fun(" + x + ")");
+}
+
+while(localStorage.getItem("added_todo_" + def) != null)
+{
+	var text = localStorage.getItem("added_todo_" + def);
+	var dom = new DOMParser().parseFromString(text, "text/html");
+	todos.appendChild(dom.lastChild.lastChild.firstChild);
+	def++;
+}
 
 items_counter.innerText = todo.length + " items left";
 
@@ -58,7 +71,6 @@ clear.onclick = function () {
 
 	while(++counter < todo.length)
 	{
-		console.log(counter);
 		if (check[counter].checked)
 			todo[counter].remove();
 	}
@@ -72,15 +84,28 @@ clear.onclick = function () {
 
 /* deleting todos function */
 
+function redefine_data(id)
+{
+	var key_id = id
+	var key_value = "";
+	while(key_id < localStorage.length)
+	{
+		key_value = localStorage.getItem("added_todo_" + (key_id + 1));
+		localStorage.setItem("added_todo_" + key_id, key_value);
+		key_id++;
+	}
+	localStorage.removeItem("added_todo_" + (key_id - 1));
+}
+
 function delete_fun(id)
 {
 	var d = -1
 	todo[id].remove();
+	localStorage.removeItem("added_todo_" + id);
+	redefine_data(id)
 	items_counter.innerText = todo.length + " items left";
 	while (++d < todo.length)
-	{
 		delt[d].setAttribute("onclick", "delete_fun(" + d + ")");
-	}
 }
 
 /* deleting todos function */
@@ -114,13 +139,14 @@ add_check.onclick = function () {
 	p.innerText = add_content.value;
 	add_content.value = "";
 	items_counter.innerText = todo.length + " items left";
+	localStorage.setItem("added_todo_" + local_id, wrapper.outerHTML);
+	local_id++;
 	if (light_dark == 1)
 	{
 		todo[todo.length - 1].style.backgroundColor = "hsl(0, 0%, 98%)";
 		todo[todo.length - 1].style.borderColor = check_box[todo.length - 1].style.borderColor = "hsl(236, 33%, 92%)";
 		todo_content[todo.length - 1].style.color = "hsl(235, 19%, 35%)";
 	}
-	console.log(todo.length);
 }
 
 /* adding todo */
