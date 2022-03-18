@@ -7,14 +7,14 @@ var todos = document.getElementById("todos");
 var delt = document.getElementsByClassName("delete");
 var light_dark = 0;
 var x = -1;
-var local_id = 0;
 var def = 0;
-
+console.log(todo.length);
 
 window.onload = function() {
 	while (++x < todo.length)
 		delt[x].setAttribute("onclick", "delete_fun(" + x + ")");
 }
+/* get todos from localStorage */
 
 while(localStorage.getItem("added_todo_" + def) != null)
 {
@@ -23,6 +23,7 @@ while(localStorage.getItem("added_todo_" + def) != null)
 	todos.appendChild(dom.lastChild.lastChild.firstChild);
 	def++;
 }
+/* get todos from localStorage */
 
 items_counter.innerText = todo.length + " items left";
 
@@ -66,16 +67,24 @@ all.onclick = function () {
 }
 
 clear.onclick = function () {
-	var counter = -1;
-	var d = -1
+	var counter = 0;
+	var delt_set = 0;
 
-	while(++counter < todo.length)
+	while(counter < todo.length)
 	{
 		if (check[counter].checked)
+		{
 			todo[counter].remove();
+			redefine_data(counter);
+		}
+		counter++;
 	}
-	while (++d < todo.length)
-		delt[d].setAttribute("onclick", "delete_fun(" + d + ")");
+	console.log(counter);
+	while (delt_set < todo.length)
+	{
+		delt[delt_set].setAttribute("onclick", "delete_fun(" + delt_set + ")");
+		delt_set++;
+	}
 	items_counter.innerText = todo.length + " items left";
 }
 
@@ -99,13 +108,15 @@ function redefine_data(id)
 
 function delete_fun(id)
 {
-	var d = -1
+	var d = 0;
 	todo[id].remove();
-	localStorage.removeItem("added_todo_" + id);
 	redefine_data(id)
 	items_counter.innerText = todo.length + " items left";
-	while (++d < todo.length)
+	while (d < todo.length)
+	{
 		delt[d].setAttribute("onclick", "delete_fun(" + d + ")");
+		d++;
+	}
 }
 
 /* deleting todos function */
@@ -139,8 +150,7 @@ add_check.onclick = function () {
 	p.innerText = add_content.value;
 	add_content.value = "";
 	items_counter.innerText = todo.length + " items left";
-	localStorage.setItem("added_todo_" + local_id, wrapper.outerHTML);
-	local_id++;
+	localStorage.setItem("added_todo_" + (todo.length - 1), wrapper.outerHTML);
 	if (light_dark == 1)
 	{
 		todo[todo.length - 1].style.backgroundColor = "hsl(0, 0%, 98%)";
