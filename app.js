@@ -5,10 +5,14 @@ var add_check = document.getElementById("add");
 var items_counter = document.getElementById("items");
 var todos = document.getElementById("todos");
 var delt = document.getElementsByClassName("delete");
+var completed = document.getElementById("completed");
+var all = document.getElementById("all");
+var check = document.getElementsByClassName("check");
+var clear = document.getElementById("clear");
+
 var light_dark = 0;
 var x = -1;
 var def = 0;
-console.log(todo.length);
 
 window.onload = function() {
 	while (++x < todo.length)
@@ -23,17 +27,27 @@ while(localStorage.getItem("added_todo_" + def) != null)
 	todos.appendChild(dom.lastChild.lastChild.firstChild);
 	def++;
 }
+
+let theme_from_LS = localStorage.getItem("light_dark");
+if (theme_from_LS === "1")
+{
+	sun_or_moon = "moon";
+	theme_fun("light");
+	theme.setAttribute("src", "images/icon-moon.svg");
+}
+else
+{
+	sun_or_moon = "sun";
+	theme_fun("dark");
+	theme.setAttribute("src", "images/icon-sun.svg");
+}
+
 /* get todos from localStorage */
 
 items_counter.innerText = todo.length + " items left";
 
 
 /* filters */
-
-var completed = document.getElementById("completed");
-var all = document.getElementById("all");
-var check = document.getElementsByClassName("check");
-var clear = document.getElementById("clear");
 
 completed.onclick = function () {
 	var counter = -1;
@@ -74,12 +88,11 @@ clear.onclick = function () {
 	{
 		if (check[counter].checked)
 		{
-			todo[counter].remove();
+			todo[cheme_ounter].remove();
 			redefine_data(counter);
 		}
 		counter++;
 	}
-	console.log(counter);
 	while (delt_set < todo.length)
 	{
 		delt[delt_set].setAttribute("onclick", "delete_fun(" + delt_set + ")");
@@ -97,7 +110,7 @@ function redefine_data(id)
 {
 	var key_id = id
 	var key_value = "";
-	while(key_id < localStorage.length)
+	while(key_id < localStorage.length)delete_fun
 	{
 		key_value = localStorage.getItem("added_todo_" + (key_id + 1));
 		localStorage.setItem("added_todo_" + key_id, key_value);
@@ -161,7 +174,7 @@ add_check.onclick = function () {
 
 /* adding todo */
 
-/* theme modifier */
+/* theme modifier heme_*/
 
 function theme_fun(theme)
 {
@@ -182,6 +195,7 @@ function theme_fun(theme)
 		filter_div.style.backgroundColor = creat_new.style.backgroundColor = "hsl(0, 0%, 98%)";
 		todos.style.setProperty('--color_track', "hsl(0, 0%, 98%)");
 		all.style.setProperty("--hover", "hsl(235, 19%, 35%)");
+		console.log("hello there");	
 		completed.style.setProperty("--hover", "hsl(235, 19%, 35%)");
 		active.style.setProperty("--hover", "hsl(235, 19%, 35%)");
 		add_content.style.color = "hsl(236, 9%, 61%)";
@@ -217,6 +231,7 @@ theme.onclick = function () {
 		sun_or_moon = "moon";
 		theme_fun("light");
 		light_dark = 1;
+		localStorage.setItem("light_dark", "1");
 	}
 	else
 	{
@@ -224,7 +239,9 @@ theme.onclick = function () {
 		sun_or_moon = "sun";
 		theme_fun("dark");
 		light_dark = 0;
+		localStorage.setItem("light_dark", "0");
 	}
+
 }
 
 /* theme modifier */
